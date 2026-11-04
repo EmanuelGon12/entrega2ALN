@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+ej1_err.txt
+.DS_Store
