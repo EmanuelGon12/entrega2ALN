@@ -1,0 +1,28 @@
+matriz,precond,t_setup,iter,t_cg,res_rel,info
+gyro_m,sin precond.,0,8425,1.939,9.792e-13,0
+gyro_m,Jacobi,0.0003347,511,0.1204,9.882e-13,0
+gyro_m,ILU0,0.134,145,0.0909,8.846e-13,0
+msc10848,sin precond.,0,20000,19.53,1.486e-07,20000
+msc10848,Jacobi,0.000785,5374,5.249,8.678e-13,0
+msc10848,ILU0,0.00937,-1,0,nan,-2
+bcsstk17,sin precond.,0,20000,5.38,9.386e-09,20000
+bcsstk17,Jacobi,0.0002743,3141,0.8558,9.681e-13,0
+bcsstk17,ILU0,0.000879,-1,0,nan,-2
+cfd1,sin precond.,0,2200,2.184,9.671e-13,0
+cfd1,Jacobi,0.001079,2200,2.235,9.671e-13,0
+cfd1,ILU0,0.03003,504,1.507,9.557e-13,0
+cant,sin precond.,0,11328,31.57,9.736e-13,0
+cant,Jacobi,0.00491,4576,12.85,1.004e-12,0
+cant,ILU0,0.04774,-1,0,nan,-2
+bmwcra_1,sin precond.,0,12295,92.53,1.010e-12,0
+bmwcra_1,Jacobi,0.01587,6259,47.42,1.007e-12,0
+bmwcra_1,ILU0,0.339,1475,26.97,9.541e-13,0
+apache2,sin precond.,0,6018,22.84,9.507e-11,0
+apache2,Jacobi,0.003117,5017,20.25,8.749e-11,0
+apache2,ILU0,0.02428,958,13.23,3.806e-11,0
+ecology2,sin precond.,0,7485,35.32,7.457e-11,0
+ecology2,Jacobi,0.003768,7447,38.12,7.466e-11,0
+ecology2,ILU0,0.02333,2224,41.5,4.049e-11,0
+thermal2,sin precond.,0,6336,76.57,1.054e-12,0
+thermal2,Jacobi,0.01539,6052,75.89,1.044e-12,0
+thermal2,ILU0,0.1478,2496,89.7,1.021e-12,0

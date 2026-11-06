@@ -56,17 +56,17 @@ def tabla(tipo, n):
 
 tit = doc.add_heading("Tarea 2 – Álgebra Lineal Numérica 2026", 0)
 tit.alignment = WD_ALIGN_PARAGRAPH.CENTER
-p = doc.add_paragraph("Informe parcial: Ejercicio 1")
+p = doc.add_paragraph("Informe")
 p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 p.runs[0].bold = True
 
 doc.add_heading("1. Introducción", 1)
 par("En este informe se estudia la resolución de sistemas lineales densos Ax = b mediante distintas estrategias de "
     "factorización y se analiza su eficiencia y estabilidad numérica en función del tamaño del sistema y del número de "
-    "condición de la matriz. El presente documento cubre el Ejercicio 1; el Ejercicio 2 (matrices dispersas de la colección "
-    "SuiteSparse, métodos directos con reordenamientos RCM y AMD, y gradiente conjugado precondicionado) se incorporará "
-    "en una versión posterior.")
+    "condición de la matriz (Ejercicio 1), y la resolución de sistemas dispersos simétricos definidos positivos de la colección "
+    "SuiteSparse mediante un método directo con reordenamientos RCM y AMD y mediante gradiente conjugado precondicionado (Ejercicio 2).")
 
+doc.add_heading("Ejercicio 1", 1)
 doc.add_heading("2. Metodología", 1)
 doc.add_heading("2.1 Generación de las matrices", 2)
 par("Dado que para una matriz S no singular las matrices A y SAS⁻¹ comparten los mismos valores propios, y que una matriz "
@@ -143,7 +143,7 @@ par("El tiempo de resolución posterior a la factorización (sustituciones o pro
     "(menor que el de QR) proviene de que se apoya en LAPACK optimizado, no de una menor complejidad: calcular A⁻¹ requiere "
     "≈2n³ operaciones, tres veces más que una factorización LU.")
 
-doc.add_heading("5. Conclusiones parciales", 1)
+doc.add_heading("5. Conclusiones del Ejercicio 1", 1)
 for t in [
     "El error en la solución está gobernado por κ(A) y es común a todos los métodos; la elección del algoritmo afecta principalmente al residuo y a la robustez.",
     "LU con pivoteo parcial, LU de LAPACK y QR son retroestables; la inversión explícita de A no lo es y debe evitarse.",
@@ -152,7 +152,6 @@ for t in [
 ]:
     doc.add_paragraph(t, style="List Bullet")
 
-doc.add_heading("6. Ejercicio 2", 1)
-par("Pendiente. Las matrices de la colección SuiteSparse no pudieron descargarse al momento de redactar este informe parcial.")
+exec(open("informe_ej2.py").read())
 
-doc.save("informe_tarea2_parcial.docx")
+doc.save("informe_tarea2.docx")

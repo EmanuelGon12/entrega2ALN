@@ -1,0 +1,10 @@
+matriz,orden,n,nnz,t_orden,t_fact,t_solve,nnz_LU,res_rel,err_rel,rss_MB
+apache2,natural,timeout
+apache2,rcm,timeout
+apache2,amd,715176,4817870,0.01772,89.77,0.2975,384539580,3.426e-12,1.066e-11,8790
+ecology2,natural,timeout
+ecology2,rcm,timeout
+ecology2,amd,999999,4995991,0.01573,5.419,0.07704,77033344,2.621e-12,4.356e-12,1985
+thermal2,natural,timeout
+thermal2,rcm,timeout
+thermal2,amd,1228045,8580313,0.03229,52.9,0.2216,130976994,1.377e-14,9.367e-14,4450

@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 ej1_err.txt
 .DS_Store
+matrices/
+ej2_*_err.txt
+*.whl
