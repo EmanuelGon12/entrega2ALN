@@ -1,19 +1,13 @@
 import pandas as pd
 
-COLS = ["matriz", "orden", "n", "nnz", "t_orden", "t_fact", "t_solve", "nnz_LU", "res_rel", "err_rel", "rss_MB"]
 
-
-def directo():
-    partes = [pd.read_csv(f, names=COLS, header=0, dtype=str) for f in ("ej2_directo.csv", "ej2_directo_b.csv")]
-    d = pd.concat(partes, ignore_index=True)
-    d["estado"] = d["n"].where(~d["n"].fillna("").str.isdigit(), "ok")
-    base = d[d.estado == "ok"].groupby("matriz")[["n", "nnz"]].first()
-    for c in ["t_orden", "t_fact", "t_solve", "nnz_LU", "res_rel", "err_rel", "rss_MB"]:
-        d[c] = pd.to_numeric(d[c], errors="coerce")
-    d["n"] = d["matriz"].map(base["n"]).astype(float)
-    d["nnz"] = d["matriz"].map(base["nnz"]).astype(float)
+def directo(archivo="ej2_directo.csv"):
+    d = pd.read_csv(archivo)
+    for c in d.columns:
+        if c not in ("matriz", "orden", "estado"):
+            d[c] = pd.to_numeric(d[c], errors="coerce")
     return d
 
 
-def cg():
-    return pd.read_csv("ej2_cg.csv")
+def cg(archivo="ej2_cg.csv"):
+    return pd.read_csv(archivo)

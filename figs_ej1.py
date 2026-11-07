@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 d = pd.read_csv("ej1_resultados.csv")
 d["kappa"] = d["kappa"].astype(float)
-metodos = ["LU sin pivoteo", "LU pivoteo parcial", "inv(A)", "LAPACK lu", "QR"]
-marc = dict(zip(metodos, "osv^D"))
+metodos = ["LU sin pivoteo", "LU pivoteo parcial", "inv(A)", "LAPACK lu", "QR", "QR (sin formar Q)"]
+marc = dict(zip(metodos, "osv^DP"))
 tipos = {"spd": "Matrices SPD", "indef": "Matrices simétricas indefinidas"}
 
 fig, ax = plt.subplots(1, 2, figsize=(9, 3.6), sharey=True)
@@ -37,7 +37,7 @@ fig.savefig("figs/residuo_vs_kappa.png", dpi=200)
 
 fig, a = plt.subplots(figsize=(5.2, 3.6))
 for m in metodos:
-    s = d[(d.tipo == "spd") & (d.kappa == 1e6) & (d.metodo == m)]
+    s = d[(d.tipo == "spd") & (d.kappa == 1e2) & (d.metodo == m)]
     a.loglog(s.n, s.t_fact, marker=marc[m], label=m)
 a.set_xlabel("n")
 a.set_ylabel("Tiempo de factorización (s)")
