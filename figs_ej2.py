@@ -8,9 +8,9 @@ from tabla_ej2 import directo, cg
 
 d = directo()
 c = cg()
-ordenes = [("natural", "Natural"), ("rcm", "RCM"), ("amd", "MMD (≈AMD)")]
+ordenes = [("natural", "Natural"), ("rcm", "RCM"), ("amd", "MMD (SuperLU)"), ("amd_real", "AMD (SuiteSparse)")]
 x = np.arange(len(MATRICES))
-w = 0.27
+w = 0.2
 
 
 def barras(col, ylabel, archivo, tope=None):
@@ -23,7 +23,7 @@ def barras(col, ylabel, archivo, tope=None):
                 v.append(f[col])
             else:
                 v.append(np.nan)
-        a.bar(x + (i - 1) * w, v, w, label=etiqueta)
+        a.bar(x + (i - 1.5) * w, v, w, label=etiqueta)
     a.set_yscale("log")
     a.set_xticks(x)
     a.set_xticklabels(MATRICES, rotation=30, ha="right")
