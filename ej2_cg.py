@@ -107,4 +107,5 @@ def main():
             print(f"{f[0]},{f[1]},{f[2]:.4g},{f[3]},{f[4]:.4g},{f[5]:.3e},{f[6]}", flush=True)
 
 
-main()
+if __name__ == "__main__":
+    main()

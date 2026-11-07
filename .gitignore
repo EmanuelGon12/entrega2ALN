@@ -5,3 +5,4 @@ ej1_err.txt
 matrices/
 ej2_*_err.txt
 *.whl
+venv/

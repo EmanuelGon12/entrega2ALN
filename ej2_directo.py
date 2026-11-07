@@ -76,4 +76,5 @@ def main():
                 print(f"{nombre},{orden},timeout", flush=True)
 
 
-main()
+if __name__ == "__main__":
+    main()

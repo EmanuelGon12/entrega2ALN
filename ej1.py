@@ -100,4 +100,5 @@ def main():
                     print(f"{tipo},{n},{kappa:.0e},{nombre},{tf:.4f},{ts:.5f},{err:.3e},{res:.3e},{errp:.3e},{resp:.3e},{amp:.3e}", flush=True)
 
 
-main()
+if __name__ == "__main__":
+    main()
