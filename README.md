@@ -51,7 +51,7 @@ La primera lectura de cada matriz guarda una copia `matrices/<nombre>/<nombre>.n
 ```bash
 ./venv/bin/python ej1.py > ej1_resultados.csv
 ./venv/bin/python figs_ej1.py
-./venv/bin/python ej2_directo.py > ej2_directo.csv 2> ej2_directo_err.txt
+REPS=3 ./venv/bin/python ej2_directo.py > ej2_directo.csv 2> ej2_directo_err.txt
 ./venv/bin/python ej2_cg.py > ej2_cg.csv
 ./venv/bin/python figs_ej2.py
 ./venv/bin/python informe.py
@@ -59,3 +59,17 @@ La primera lectura de cada matriz guarda una copia `matrices/<nombre>/<nombre>.n
 
 Todos los scripts aceptan una lista de tamaños (`ej1.py 256,512`) o de matrices
 (`ej2_directo.py gyro_m,cfd1`) para pruebas rápidas.
+
+## Notas de medición (Ejercicio 2)
+
+- `ej2_directo.py` usa el límite de 300 s por caso. La variable de entorno `REPS` (por defecto 1) repite cada caso y guarda
+  la mediana de los tiempos y de la memoria, más `t_fact_min`, `t_fact_max`, `rss_min` y `rss_max`. Si la primera repetición falla o expira, no se repite.
+- Órdenes: `natural`, `rcm` (RCM de SciPy), `amd` (minimum degree múltiple de SuperLU, `MMD_AT_PLUS_A`) y `amd_real`
+  (AMD de SuiteSparse). `amd_real` usa `scikit-sparse` si está instalado (`brew install suite-sparse && pip install scikit-sparse`)
+  y, si no, `cvxopt.amd`, que incluye SuiteSparse en sus ruedas binarias; ambos dan una permutación AMD que se aplica como en RCM (`A[p][:, p]`, `splu` con orden natural).
+- Tiempos: en `amd` el ordenamiento ocurre dentro de `splu` y queda incluido en `t_fact`; `t_prep` es solo la conversión a CSC.
+  En `rcm` y `amd_real`, `t_orden` es el cálculo de la permutación y `t_perm` construir `A[p][:, p]`.
+- `banda` y `env` (ancho de banda y envolvente) se calculan antes de factorizar y quedan registrados aunque la factorización expire.
+- `rss_MB` es el `ru_maxrss` del proceso hijo (convertido a MB según la plataforma). `rss_obs_MB` y `swap_MB` son el RSS máximo del hijo y el aumento
+  de swap del sistema muestreados cada 0,5 s desde el proceso padre; solo son representativos en casos que duran varios segundos.
+- `ej2_cg.py` estima κ con `eigsh` en subprocesos de 300 s máximo cada uno; λmax usa `tol=1e-6`. El CG se repite 3 veces (mediana).

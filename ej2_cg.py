@@ -11,8 +11,8 @@ from comun import MATRICES, cargar, sistema, residuo_rel
 RTOL = 1e-12
 MAXITER = 20000
 REPS = 3
-LIMITE_REPS = 10.0
-TIMEOUT_LAM = 120
+LIMITE_REPS = 1e9
+TIMEOUT_LAM = 300
 
 
 @njit(cache=True)
@@ -132,7 +132,7 @@ def correr(nombre):
 def lam(nombre, que):
     A = cargar(nombre).tocsr()
     if que == "max":
-        v = spla.eigsh(A, k=1, which="LA", return_eigenvectors=False)[0]
+        v = spla.eigsh(A, k=1, which="LA", tol=1e-6, return_eigenvectors=False)[0]
     else:
         lu = spla.splu(A.tocsc(), permc_spec="MMD_AT_PLUS_A", diag_pivot_thresh=0.0, options=dict(SymmetricMode=True))
         inv = spla.LinearOperator(A.shape, matvec=lu.solve, dtype=np.float64)
